@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<link type="text/css" rel="stylesheet" href="css/bootstrap.min.css" />
+	<title>Cadastro de Generos</title>
+</h:head>
+
+<h:body>
+
+	<ui:composition template="Template.xhtml">
+		<ui:define name="conteudoCentral">
+			<h:form>
+				<h:panelGrid columns="2">
+					<p:outputLabel value="Nome do genero:"></p:outputLabel>
+					<p:inputText placeholder="Nome do Genero"
+						value="#{mGeneroBean.genero.nome}"></p:inputText>
+
+					<p:outputLabel value="Descrição:"></p:outputLabel>
+					<p:inputText placeholder="Descrição da Genero" style="width: 100%"
+						value="#{mGeneroBean.genero.descricao}">
+					
+					</p:inputText>
+
+					<p:commandButton value="Cadastrar Genero"
+						action="#{mGeneroBean.adicionarGenero(mGeneroBean.genero)}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

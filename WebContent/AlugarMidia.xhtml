@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:c="http://java.sun.com/jsp/jstl/core">
+
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Alugar midia</title>
+</h:head>
+<h:body>
+	<!-- Componente que define a página de template -->
+
+	<ui:composition template="Template.xhtml">
+		<ui:define name="conteudoCentral">
+			<h4>Para adiciona o filme no carrinho coloque o nome do cliente do Cliente</h4>
+			<h:form>
+			<p:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel value="Nome do cliente:"></p:outputLabel>
+				<p:selectOneMenu value="#{mAluguelBean.idCliente}"
+					colspan="2" size="30">
+					<f:selectItem itemLabel="Selecione Um" itemValue="null" />
+					<f:selectItems var="clientes" value="#{mClienteBean.lista}"
+						itemLabel="#{clientes.nome}" itemValue="#{clientes.id}" size="30">
+					</f:selectItems>
+				</p:selectOneMenu>
+			
+				
+				<p:outputLabel  value="Adicionar midias:" />
+				<p:selectOneMenu  value="#{mAluguelBean.idMidia}"
+					colspan="2" size="30">
+					<f:selectItem itemLabel="Selecione Um" itemValue="null" />
+					<f:selectItems var="midias" value="#{mMidiaBean.midiasStatus}"
+						itemLabel="#{midias.titulo}" itemValue="#{midias.id}" size="30">
+					</f:selectItems>
+				</p:selectOneMenu>
+
+					<p:commandButton value="adicionar ao Carrinho"
+					action="#{mAluguelBean.carrinho}">
+				</p:commandButton>
+			</p:panelGrid>
+				</h:form>
+				<p:summaryRow>
+						<p:column colspan="3" style="text-align:right">
+							<h:outputText value="Total:" />
+						</p:column>
+						<p:column>
+							<h:outputText value="#{mAluguelBean.valorTotal}">
+								<f:convertNumber type="currency" currencySymbol="$" />
+							</h:outputText>
+						</p:column>
+					</p:summaryRow>
+			
+			<h:form>	
+			<p:panelGrid columns="2" cellpadding="5">
+				<p:outputLabel  value="Remover do Carrinho:" />
+				<p:selectOneMenu value="#{mAluguelBean.idMidiaRemover}"
+					colspan="2" size="30">
+					<f:selectItem itemLabel="Selecione Um" itemValue="null" />
+					<f:selectItems var="item" value="#{mAluguelBean.carrinho}"
+						itemLabel="#{item.midia.titulo}" itemValue="#{item.id}" size="30">
+					</f:selectItems>
+				</p:selectOneMenu>
+
+				<p:commandButton value="Remover do Carrinho"
+					action="#{mAluguelBean.removerItem()}">
+				</p:commandButton>
+			</p:panelGrid>
+			
+			</h:form>
+				
+			<h:form>
+			<h:panelGrid columns="2" cellpadding="5">
+			<p:commandButton value="Confirmar aluguel"
+					action="#{mAluguelBean.concluirAluguel()}">
+			</p:commandButton>
+			<p:commandButton value="Cancelar"
+				action="#{mAluguelBean.cancelarAluguel}">
+			</p:commandButton>
+			</h:panelGrid>
+			
+			</h:form>
+		</ui:define>
+	</ui:composition>
+
+</h:body>
+</html>

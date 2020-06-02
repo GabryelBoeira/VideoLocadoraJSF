@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Alterar Cliente</title>
+</h:head>
+<h:body>
+	<!-- Componente que define a página de template -->
+	<ui:composition template="Template.xhtml">
+		<ui:define name="conteudoCentral">
+			<h:inputHidden value="#{mClienteBean.cliente.id}" />
+			<p:outputLabel value="#{mClienteBean.cliente.id}"></p:outputLabel>
+			<h:form>
+			<h:panelGrid columns="2">
+			
+			<h:outputText value="Nome do cliente:"/>
+			<h:inputText value="#{mClienteBean.cliente.nome}" ></h:inputText>
+			
+			<h:outputText value="Email do cliente:"/>
+			<h:inputText value="#{mClienteBean.cliente.email}" ></h:inputText>
+			
+			<h:outputText value="CEP:"/>
+			<p:inputMask mask="99.999-999" value="#{mClienteBean.cliente.cep}">
+			</p:inputMask>
+			
+			<h:outputText value="Data de nascimento:"/>
+			<p:outputLabel for="mask" >
+        		<p:calendar id="mask" value="#{mClienteBean.cliente.dataNacismento}" pattern="dd-MM-yyyy" mask="true">
+			</p:calendar></p:outputLabel>
+			
+			
+			</h:panelGrid>
+			<p:commandButton value="alterar Genero" action="#{mClienteBean.alterarCliente(mClienteBean.cliente)}"/>	 
+		
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
