@@ -8,3 +8,5 @@
    - Versão do Java : JDK 8
    - Projeto MVC e JSF e JPA hibernate
    - Banco de dados : H2
+   
+**** Este é um Projeto Concluido ****
