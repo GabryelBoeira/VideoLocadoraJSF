@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	  xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<title>Alterar Genero</title>
+</h:head>
+<h:body>
+	<!-- Componente que define a página de template -->
+	<ui:composition template="Template.xhtml">
+		<ui:define name="conteudoCentral">
+			
+			<h:form>
+			<h:inputHidden value="#{mGeneroBean.genero.id}" />
+			<p:outputLabel value="#{mGeneroBean.genero.id}"></p:outputLabel>
+			<h:panelGrid columns="2">
+			
+			<h:outputText value="Nome do genero:"/>
+			<h:inputText value="#{mGeneroBean.genero.nome}" ></h:inputText>
+			
+			<h:outputText value="Descrição do genero:"/>
+			<h:inputText size="40"
+			value="#{mGeneroBean.genero.descricao}"/>
+			
+			</h:panelGrid>
+			<p:commandButton value="alterar Genero" action="#{mGeneroBean.alterarGenero(mGeneroBean.genero)}"/>	 
+		
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>

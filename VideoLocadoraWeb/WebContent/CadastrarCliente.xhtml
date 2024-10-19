@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	 xmlns:c="http://java.sun.com/jsp/jstl/core">
+<h:head>
+	<meta charset="UTF-8" />
+	<title>Cadastrar Cliente</title>
+</h:head>
+<h:body>
+	<!-- Componente que define a página de template -->
+	<ui:composition template="Template.xhtml">
+		<ui:define name="conteudoCentral">
+			<h:form>
+			
+		<h:panelGrid columns="2" cellpadding="5">
+					<p:outputLabel value="Nome:"></p:outputLabel>
+					<p:inputText placeholder="Nome do cliente" size="40"
+						value="#{mClienteBean.cliente.nome}"></p:inputText>
+					
+					<p:outputLabel value="e-mail"></p:outputLabel>
+					<p:inputText id="email"  required="true" label="email" placeholder="email@exemplo.com" size="40"
+						value="#{mClienteBean.cliente.email}">
+					</p:inputText>
+					
+					<p:outputLabel value="CEP:" ></p:outputLabel>
+					<p:inputMask placeholder="CEP" mask="99.999-999"
+						value="#{mClienteBean.cliente.cep}">
+					</p:inputMask>
+					
+					<p:outputLabel for="mask" value="Data de nascimeto:" />
+        			<p:calendar id="mask" placeholder="Data de nascimento" value="#{mClienteBean.cliente.dataNacismento}" pattern="dd-MM-yyyy" mask="true">
+					</p:calendar>
+
+            		<p:commandButton value="Cadastrar cliente"
+						action="#{mClienteBean.cadastrarCliente(mClienteBean.cliente)}">
+					</p:commandButton>
+				</h:panelGrid>
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</h:body>
+</html>
