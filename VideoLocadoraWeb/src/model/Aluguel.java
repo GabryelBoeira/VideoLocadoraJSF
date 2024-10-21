@@ -2,19 +2,21 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 
-import model.ItemAluguel;
 @Entity
 public class Aluguel implements Serializable {
+
+	private static final long serialVersionUID = -8581348107550054975L;
 
 	public Aluguel(){
 		itens=new ArrayList<ItemAluguel>();
@@ -25,62 +27,67 @@ public class Aluguel implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private int id; 
 
-	@Column(name = "itens", columnDefinition = "VARCHAR(1000)")
+	@Column(name = "data_aluguel")
+	private Date dataDoAluguel;
+	
+	@Column(name = "data_devolucao")
+	private Date dataDaDevolucao;
+	
+	@Column(name = "valor_aluguel")
+	private double valorDoAluguel;
+	
+	@ManyToOne
 	private ArrayList<ItemAluguel> itens;
 
-	@Column(name = "cliente", columnDefinition = "VARCHAR(1000)")
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
 	private Cliente cliente;
-	private Date dataDoAluguel;
-	private Date dataDaDevolucao;
-	private double valorDoAluguel;
 
-	@OneToMany
-
-	public ArrayList<ItemAluguel> getItens() {
-		return itens;
-	}
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
-	}
-	public void setItens(ArrayList<ItemAluguel> itens) {
-		this.itens = itens;
 	}
 	
 	public Cliente getCliente() {
 		return cliente;
 	}
+	
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
+	
 	public Date getDataDoAluguel() {
 		return dataDoAluguel;
 	}
+	
 	public void setDataDoAluguel(Date dataDoAluguel) {
 		this.dataDoAluguel = dataDoAluguel;
 	}
+	
 	public Date getDataDaDevolucao() {
 		return dataDaDevolucao;
 	}
+	
 	public void setDataDaDevolucao(Date dataDaDevolucao) {
 		this.dataDaDevolucao = dataDaDevolucao;
 	}
+	
 	public double getValorDoAluguel() {
 		return valorDoAluguel;
 	}
+	
 	public void setValorDoAluguel(double valorDoAluguel) {
 		this.valorDoAluguel = valorDoAluguel;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+	public ArrayList<ItemAluguel> getItens() {
+		return itens;
+	}
+
+	public void setItens(ArrayList<ItemAluguel> itens) {
+		this.itens = itens;
+	}
 	
 }

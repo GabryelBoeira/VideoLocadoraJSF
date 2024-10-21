@@ -11,7 +11,7 @@ import conexao.Conexao;
 import model.Cliente;
 import model.Genero;
 
-public class ClienteDAO{
+public class ClienteDAO {
 
 	public static int cadastrarCliente(Cliente cliente) {
 		try {
@@ -30,7 +30,7 @@ public class ClienteDAO{
 			return 3;
 		}
 	}
-	
+
 	// exclusao de clientes
 	public static boolean excluirCliente(Cliente c) {
 		EntityManager em = Conexao.getEntityManager();
@@ -41,14 +41,13 @@ public class ClienteDAO{
 		em.close();
 		return true;
 	}
-		
-	//Lista de clientes
+
+	// Lista de clientes
 	@SuppressWarnings("unchecked")
 	public static ArrayList<Cliente> listarCliente() {
 		EntityManager em = Conexao.getEntityManager();
 		Query q = em.createQuery("SELECT c FROM Cliente c");
-		ArrayList<Cliente> clienteBanco = 
-				(ArrayList<Cliente>) q.getResultList();
+		ArrayList<Cliente> clienteBanco = (ArrayList<Cliente>) q.getResultList();
 		em.close();
 		return clienteBanco;
 	}
@@ -59,6 +58,7 @@ public class ClienteDAO{
 		em.close();
 		return c;
 	}
+
 	public static Boolean alterarCliente(Cliente g) {
 		try {
 			System.out.println("alterar" + g.getId());
@@ -75,16 +75,13 @@ public class ClienteDAO{
 		} catch (RollbackException e) {
 			return false;
 		}
-
 	}
+
 	public static Cliente procurarClientePorNome(String cliente) {
 		EntityManager em = Conexao.getEntityManager();
 		try {
-			Query q = em
-					.createQuery("SELECT c FROM Cliente c WHERE c.nome = :nomeCliente");
-
+			Query q = em.createQuery("SELECT c FROM Cliente c WHERE c.nome = :nomeCliente");
 			q.setParameter("nomeCliente", cliente);
-
 			Cliente clienteBanco = (Cliente) q.getSingleResult();
 			return clienteBanco;
 		} catch (Exception e) {
@@ -92,7 +89,5 @@ public class ClienteDAO{
 		} finally {
 			em.close();
 		}
-
 	}
 }
-

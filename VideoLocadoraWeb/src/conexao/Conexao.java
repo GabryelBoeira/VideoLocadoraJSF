@@ -10,17 +10,27 @@ import javax.persistence.Persistence;
 
 public class Conexao {
 
+	private static final String NOME_DA_CONEXAO = "videolocadoraDB";
+	private static EntityManagerFactory factory;
+
+	static {
+		factory = Persistence.createEntityManagerFactory(NOME_DA_CONEXAO);
+	}
+
 	public Connection getConnection() {
 		try {
-			return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/videoLocadoraDB", "sa", "");
+			return DriverManager.getConnection("jdbc:h2:tcp://localhost/~/videolocadoraDB", "sa", "");
 		} catch (SQLException e) {
-			throw new RuntimeException(e); 
+			throw new RuntimeException(e);
 		}
 	}
-	private static final String NOME_DA_CONEXAO = "videoLocadoraDB";
-	private static final EntityManagerFactory emf = Persistence.createEntityManagerFactory(NOME_DA_CONEXAO);
 
-	public static EntityManager getEntityManager() {		
-		return emf.createEntityManager();
-}
+	public static EntityManager getEntityManager() {
+		return factory.createEntityManager();
+	}
+	
+	public static void close() {
+		factory.close();
+	}
+
 }

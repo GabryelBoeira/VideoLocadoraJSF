@@ -2,15 +2,11 @@ package dal;
 
 import java.util.ArrayList;
 
-
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 import javax.persistence.RollbackException;
 
-
 import conexao.Conexao;
-
-
 
 import model.Genero;
 
@@ -18,14 +14,14 @@ public class GeneroDAO {
 
 	public static int adicionarGenero(Genero g) {
 		try {
-			if( (procurarGeneroPorNome(g)) == null){
-			EntityManager em = Conexao.getEntityManager();
-			em.getTransaction().begin();
-			em.persist(g);
-			em.getTransaction().commit();
-			em.close();
-			return 1;
-			}else{
+			if ((procurarGeneroPorNome(g)) == null) {
+				EntityManager em = Conexao.getEntityManager();
+				em.getTransaction().begin();
+				em.persist(g);
+				em.getTransaction().commit();
+				em.close();
+				return 1;
+			} else {
 				return 2;
 			}
 		} catch (RollbackException e) {

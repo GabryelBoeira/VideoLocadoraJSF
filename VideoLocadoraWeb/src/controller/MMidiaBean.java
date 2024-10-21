@@ -20,46 +20,6 @@ public class MMidiaBean {
 	private int idGenero;
 	private ArrayList<Midia> midias = new ArrayList<Midia>();
 	private ArrayList<Midia> midiasStatus = new ArrayList<Midia>();
-///////////////////////////////////////////////////////////// GETS E SETS////////////////////////////////////////////////////////////////////////////////////
-	public ArrayList<Midia> getMidiasStatus() {
-		return MidiaDAO.retornarStatus();
-	}
-
-	public void setMidiasStatus(ArrayList<Midia> midiasStatus) {
-		this.midiasStatus = midiasStatus;
-	}
-	
-	public Genero getGenero() {
-		return genero;
-	}
-
-	public void setGenero(Genero genero) {
-		this.genero = genero;
-	}
-
-	public ArrayList<Midia> getMidias() {
-		return MidiaDAO.retornarMidia();
-	}
-
-	public void setMidias(ArrayList<Midia> midias) {
-		this.midias = midias;
-	}
-
-	public int getIdGenero() {
-		return idGenero;
-	}
-
-	public void setIdGenero(int idGenero) {
-		this.idGenero = idGenero;
-	}
-
-	public Midia getMidia() {
-		return midia;
-	}
-
-	public void setMidia(Midia midia) {
-		this.midia = midia;
-	}
 
 ///////////////////////////////////////////////////////////// ACTION ////////////////////////////////////////////////////////////////////////////////////	
 	// remover midia
@@ -85,8 +45,7 @@ public class MMidiaBean {
 		// Verificar valor vazio
 		if ((midia.getTitulo() != "") && (midia.getClassificacaoIdade() >= 0)) {
 			if ((genero != null)) {
-				FacesContext.getCurrentInstance().addMessage(null,
-						new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Midia Cadastrado."));
+				FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Midia Cadastrado."));
 				MidiaDAO.adicionarMidias(midia);
 			} else {
 				FacesContext.getCurrentInstance().addMessage(null,
@@ -98,6 +57,47 @@ public class MMidiaBean {
 		}
 		midia = new Midia();
 		return "#";
+	}
+	
+///////////////////////////////////////////////////////////// GETS E SETS////////////////////////////////////////////////////////////////////////////////////
+	public ArrayList<Midia> getMidiasStatus() {
+		return MidiaDAO.retornarStatus();
+	}
+	
+	public void setMidiasStatus(ArrayList<Midia> midiasStatus) {
+		this.midiasStatus = midiasStatus;
+	}
+	
+	public Genero getGenero() {
+		return genero;
+	}
+	
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
+	
+	public ArrayList<Midia> getMidias() {
+		return MidiaDAO.retornarMidia();
+	}
+	
+	public void setMidias(ArrayList<Midia> midias) {
+		this.midias = midias;
+	}
+	
+	public int getIdGenero() {
+		return idGenero;
+	}
+	
+	public void setIdGenero(int idGenero) {
+		this.idGenero = idGenero;
+	}
+	
+	public Midia getMidia() {
+		return midia;
+	}
+	
+	public void setMidia(Midia midia) {
+		this.midia = midia;
 	}
 
 }

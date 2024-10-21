@@ -6,22 +6,23 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 
 @Entity
 public class Genero implements Serializable{
 	
+	private static final long serialVersionUID = 7036336841804658814L;
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.SEQUENCE)
-	private int id; 
+	private int id;
 	private String nome;
 	private String descricao;
-	@OneToMany
 	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -29,6 +30,7 @@ public class Genero implements Serializable{
 	public String getNome() {
 		return nome;
 	}
+	
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
@@ -36,10 +38,9 @@ public class Genero implements Serializable{
 	public String getDescricao() {
 		return descricao;
 	}
+	
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
-	
 	
 }
