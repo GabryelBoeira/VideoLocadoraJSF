@@ -3,6 +3,7 @@ package controller;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -33,8 +34,9 @@ public class MAluguelBean {
 	private ItemAluguel item = new ItemAluguel();
 	private Aluguel aluguel = new Aluguel();
 
-	private ArrayList<Aluguel> alugueis = new ArrayList<Aluguel>();
-	private ArrayList<ItemAluguel> itens = new ArrayList<ItemAluguel>();
+	private List<Aluguel> alugueis = new ArrayList<Aluguel>();
+	private List<ItemAluguel> itens = new ArrayList<ItemAluguel>();
+	
 	// provisorio
 	private ArrayList<ItemAluguel> carrinho = new ArrayList<ItemAluguel>();
 
@@ -233,19 +235,19 @@ public class MAluguelBean {
 		this.aluguel = aluguel;
 	}
 	
-	public ArrayList<Aluguel> getAlugueis() {
+	public List<Aluguel> getAlugueis() {
 		return AluguelDAO.retornarAluguel();
 	}
 	
-	public void setAlugueis(ArrayList<Aluguel> alugueis) {
+	public void setAlugueis(List<Aluguel> alugueis) {
 		this.alugueis = alugueis;
 	}
 	
-	public ArrayList<ItemAluguel> getItens() {
+	public List<ItemAluguel> getItens() {
 		return itens;
 	}
 	
-	public void setItens(ArrayList<ItemAluguel> itens) {
+	public void setItens(List<ItemAluguel> itens) {
 		this.itens = itens;
 	}
 }

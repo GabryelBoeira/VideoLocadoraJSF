@@ -1,6 +1,7 @@
 package dal;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
@@ -111,11 +112,11 @@ public class MidiaDAO {
 
 	}
 
-	public static ArrayList<Midia> retornarMidia() {
+	public static List<Midia> retornarMidia() {
 		// REMOVER A LINHA DO BEGIN() EM QUALQUER BUSCA NO BANCO
 		EntityManager em = Conexao.getEntityManager();
 		Query q = em.createQuery("SELECT c FROM Midia c");
-		ArrayList<Midia> lista = (ArrayList<Midia>) q.getResultList();
+		List<Midia> lista = (List<Midia>) q.getResultList();
 		em.close();
 		return lista;
 	}

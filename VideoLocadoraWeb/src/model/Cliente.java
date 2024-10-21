@@ -5,18 +5,20 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "cliente")
 public class Cliente  implements Serializable{
 
 	private static final long serialVersionUID = -5922888212335973023L;
@@ -38,8 +40,8 @@ public class Cliente  implements Serializable{
 	@Column(name = "data_nacismento")
 	private Date dataNacismento;
 	
-	@ManyToOne
-	private ArrayList<Aluguel> aluguels;
+	@OneToMany(targetEntity = Aluguel.class, mappedBy = "id", fetch = FetchType.EAGER)
+	private List<Aluguel> aluguels;
 	
 	public int getId() {
 		return id;
@@ -81,11 +83,11 @@ public class Cliente  implements Serializable{
 		this.dataNacismento = dataNacismento;
 	}
 
-	public ArrayList<Aluguel> getAluguels() {
+	public List<Aluguel> getAluguels() {
 		return aluguels;
 	}
 
-	public void setAluguels(ArrayList<Aluguel> aluguels) {
+	public void setAluguels(List<Aluguel> aluguels) {
 		this.aluguels = aluguels;
 	}
 }

@@ -1,11 +1,13 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.transaction.Transactional;
 
 import dal.GeneroDAO;
 import dal.MidiaDAO;
@@ -18,30 +20,29 @@ public class MMidiaBean {
 	private Midia midia = new Midia();
 	private Genero genero = new Genero();
 	private int idGenero;
-	private ArrayList<Midia> midias = new ArrayList<Midia>();
-	private ArrayList<Midia> midiasStatus = new ArrayList<Midia>();
+	private List<Midia> midias = new ArrayList<Midia>();
+	private List<Midia> midiasStatus = new ArrayList<Midia>();
 
 ///////////////////////////////////////////////////////////// ACTION ////////////////////////////////////////////////////////////////////////////////////	
 	// remover midia
 	public String removerMidia(Midia midia) {
 		if (midia.isMidiaAlugada() == true) {
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", "Midia Alugada."));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro", "Midia Alugada."));
 		} else {
 			MidiaDAO.excluirMidias(midia);
-			FacesContext.getCurrentInstance().addMessage(null,
-					new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Midia Apagada."));
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Midia Apagada."));
 		}
 		
 		return "#";
 	}
 
+	@Transactional
 	public String adicionarMidia(Midia m) {
-		midia = new Midia();
+		clean();
 		midia = m;
-		genero = new Genero();
 		genero = GeneroDAO.buscarGeneroPorId(idGenero);
 		midia.setGenero(genero);
+		
 		// Verificar valor vazio
 		if ((midia.getTitulo() != "") && (midia.getClassificacaoIdade() >= 0)) {
 			if ((genero != null)) {
@@ -59,8 +60,13 @@ public class MMidiaBean {
 		return "#";
 	}
 	
+	private void clean() {
+		midia = new Midia();
+		genero = new Genero();
+	}
+	
 ///////////////////////////////////////////////////////////// GETS E SETS////////////////////////////////////////////////////////////////////////////////////
-	public ArrayList<Midia> getMidiasStatus() {
+	public List<Midia> getMidiasStatus() {
 		return MidiaDAO.retornarStatus();
 	}
 	
@@ -76,11 +82,11 @@ public class MMidiaBean {
 		this.genero = genero;
 	}
 	
-	public ArrayList<Midia> getMidias() {
+	public List<Midia> getMidias() {
 		return MidiaDAO.retornarMidia();
 	}
 	
-	public void setMidias(ArrayList<Midia> midias) {
+	public void setMidias(List<Midia> midias) {
 		this.midias = midias;
 	}
 	

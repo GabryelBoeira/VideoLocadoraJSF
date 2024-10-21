@@ -20,7 +20,7 @@ public class MClienteBean {
 	private ArrayList<Cliente> lista = new ArrayList<Cliente>(); 
 
 	// Action
-	public void cadastrarCliente(Cliente c) throws ParseException {
+	public String cadastrarCliente(Cliente c) throws ParseException {
 		cliente = new Cliente();
 		cliente = c;
 		
@@ -31,13 +31,15 @@ public class MClienteBean {
 				if (veriDtNasc == 3) {					
 					int status = ClienteDAO.cadastrarCliente(cliente);
 					if (status == 1) {
-							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Cliente Cadastrado."));
-						} else if(status == 2) {
+						FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Sucesso", "Cliente Cadastrado."));
+						cliente = new Cliente();
+
+					} else if(status == 2) {
 							
-							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro!", "Cliente j� cadastrado."));
+							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro!", "Cliente ja cadastrado."));
 						}else{
 							//fim (status == 2) 
-							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro!", "Cliente n�o encontrado."));
+							FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Erro!", "Cliente nao encontrado."));
 						}
 					}else if((veriDtNasc == 1) || (veriDtNasc == 2)){
 						// fim if (veriDtNasc == 3)
@@ -51,7 +53,9 @@ public class MClienteBean {
 			//fim ((Verificar.validEmail(cliente.getEmail())))
 			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro!", "Email invalido"));
 		}
-		cliente = new Cliente();
+		
+		cliente = new Cliente();		
+		return "ListarCliente.xhtml";
 	}
 	
 	

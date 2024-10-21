@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 
 @Entity
+@Table(name = "genero")
 public class Genero implements Serializable{
 	
 	private static final long serialVersionUID = 7036336841804658814L;
@@ -42,5 +44,5 @@ public class Genero implements Serializable{
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
 	}
-	
+
 }

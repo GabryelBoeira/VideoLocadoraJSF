@@ -3,21 +3,22 @@ package model;
 
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 
 
 @Entity
+@Table(name = "midia")
 public class Midia implements Serializable {
 
 	private static final long serialVersionUID = 3833368715882820344L;
@@ -32,6 +33,7 @@ public class Midia implements Serializable {
 	
 	private String titulo;
 	
+	@Column(name = "tipo_midia")
 	private String tipoMidia;
 	
 	private String diretor;
@@ -46,11 +48,9 @@ public class Midia implements Serializable {
 	@Column(name = "midia_alugada")
 	private boolean midiaAlugada = false;
 	
-	@OneToMany(mappedBy = "genero", cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "genero_id")
 	private Genero genero;
-	
-	@ManyToOne
-	private ArrayList<ItemAluguel> itemAluguels;	
 	
 	public int getId() {
 		return id;
@@ -122,14 +122,6 @@ public class Midia implements Serializable {
 
 	public void setMidiaAlugada(boolean midiaAlugada) {
 		this.midiaAlugada = midiaAlugada;
-	}
-
-	public ArrayList<ItemAluguel> getItemAluguels() {
-		return itemAluguels;
-	}
-
-	public void setItemAluguels(ArrayList<ItemAluguel> itemAluguels) {
-		this.itemAluguels = itemAluguels;
 	}
 
 }

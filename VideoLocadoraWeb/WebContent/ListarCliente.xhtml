@@ -14,32 +14,42 @@
 	<ui:composition template="Template.xhtml">
 		<ui:define name="conteudoCentral">
 				<h:form >
-				<p:dataTable var="clientes" value="#{mClienteBean.lista}">
+				<p:dataTable var="cliente" value="#{mClienteBean.lista}">
 
 					<p:column>
 						<f:facet name="header">
 							nome
 						</f:facet>
-						<h:outputText value="#{clientes.nome}">
-						</h:outputText>
+						<h:outputText value="#{cliente.nome}"></h:outputText>
 					</p:column>
 					
 					<p:column>
 						<f:facet name="header">
 						 e-mail
 						</f:facet>
-						<h:outputText value="#{clientes.email}">
-						</h:outputText>
+						<h:outputText value="#{cliente.email}"> </h:outputText>
 					</p:column>
 					
+					<p:column>
+						<f:facet name="header">
+						 CEP
+						</f:facet>
+						<h:outputText value="#{cliente.cep}"></h:outputText>
+					</p:column>			
 					
+					<p:column>
+						<f:facet name="header">
+						 Data de Nascimento
+						</f:facet>
+						<h:outputText value="#{cliente.dataNacismento}"></h:outputText>
+					</p:column>			
 
 					<p:column>
 						<f:facet name="header">
 							Alterar
 						</f:facet>
 						<p:commandButton value="Alterar"
-							action="#{mClienteBean.mandarDadosParaAlterarCliente(clientes)}">
+							action="#{mClienteBean.mandarDadosParaAlterarCliente(cliente)}">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>

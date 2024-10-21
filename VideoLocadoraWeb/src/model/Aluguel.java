@@ -3,23 +3,26 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name = "aluguel")
 public class Aluguel implements Serializable {
 
 	private static final long serialVersionUID = -8581348107550054975L;
 
 	public Aluguel(){
-		itens=new ArrayList<ItemAluguel>();
+		itens = new ArrayList<ItemAluguel>();
 		cliente = new Cliente();
 	}
 
@@ -35,11 +38,11 @@ public class Aluguel implements Serializable {
 	
 	@Column(name = "valor_aluguel")
 	private double valorDoAluguel;
-	
-	@ManyToOne
-	private ArrayList<ItemAluguel> itens;
+		
+	@OneToMany(targetEntity = ItemAluguel.class, mappedBy = "id", fetch = FetchType.EAGER)
+	private List<ItemAluguel> itens;
 
-	@OneToMany(cascade = CascadeType.ALL, mappedBy = "cliente")
+	@ManyToOne
 	private Cliente cliente;
 
 	public int getId() {
@@ -82,11 +85,11 @@ public class Aluguel implements Serializable {
 		this.valorDoAluguel = valorDoAluguel;
 	}
 
-	public ArrayList<ItemAluguel> getItens() {
+	public List<ItemAluguel> getItens() {
 		return itens;
 	}
 
-	public void setItens(ArrayList<ItemAluguel> itens) {
+	public void setItens(List<ItemAluguel> itens) {
 		this.itens = itens;
 	}
 	

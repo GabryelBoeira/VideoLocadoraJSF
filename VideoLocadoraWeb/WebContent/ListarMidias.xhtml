@@ -16,12 +16,12 @@
 			
 				<h:form >
 				 <p:growl id="growl" life="2000" />
-					<p:dataTable var="midias" value="#{mMidiaBean.midias}">
+					<p:dataTable var="midia" value="#{mMidiaBean.midias}">
 						<p:column>
 							<f:facet name="header">
 							Id
 						</f:facet>
-							<h:outputText value="#{midias.id}">
+							<h:outputText value="#{midia.id}">
 							</h:outputText>
 						</p:column>
 
@@ -29,7 +29,7 @@
 							<f:facet name="header">
 							Titulo
 						</f:facet>
-							<h:outputText value="#{midias.titulo}">
+							<h:outputText value="#{midia.titulo}">
 							</h:outputText>
 						</p:column>
 
@@ -37,7 +37,7 @@
 							<f:facet name="header">
 							Tipo
 						</f:facet>
-							<h:outputText value="#{midias.tipoMidia}">
+							<h:outputText value="#{midia.tipoMidia}">
 							</h:outputText>
 						</p:column>
 
@@ -45,17 +45,17 @@
 							<f:facet name="header">
 							status da midia
 						</f:facet>
-							<h:outputText value="#{midias.midiaAlugada}">
+							<h:outputText value="#{midia.midiaAlugada}">
 							</h:outputText>
 						</p:column>
-
+						
 						<p:column>
 							<f:facet name="header">
-							Remover
-						</f:facet>
-							<p:commandLink value="Remover" 
+								Remover
+							</f:facet>
+							<p:commandButton value="Remover"
 								action="#{mMidiaBean.removerMidia(midias)}" >
-							</p:commandLink>
+							</p:commandButton>
 						</p:column>
 					</p:dataTable>
 				</h:form>

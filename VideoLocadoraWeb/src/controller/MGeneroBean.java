@@ -1,11 +1,13 @@
 package controller;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.transaction.Transactional;
 
 import dal.GeneroDAO;
 import dal.MidiaDAO;
@@ -16,11 +18,11 @@ import model.Midia;
 @ManagedBean(name = "mGeneroBean")
 public class MGeneroBean {
 	private Genero genero = new Genero();
-	private ArrayList<Genero> generos = new ArrayList<Genero>();
+	private List<Genero> generos = new ArrayList<Genero>();
 
 	// remover genero
 	public String removerGenero(Genero genero) {
-		ArrayList<Midia> midias = MidiaDAO.retornarMidia();
+		List<Midia> midias = MidiaDAO.retornarMidia();
 		for (Midia midia : midias) {
 			if (midia.getGenero().equals(genero)) {
 				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Genero n�o Apagado por estar vinculado a uma midia."));
@@ -53,6 +55,7 @@ public class MGeneroBean {
 	}
 
 	// cadastrar novo genero
+	@Transactional
 	public String adicionarGenero(Genero g) {	
 		genero.setNome(g.getNome());
 		genero.setDescricao(g.getDescricao());
@@ -89,11 +92,11 @@ public class MGeneroBean {
 		this.genero = genero;
 	}
 
-	public ArrayList<Genero> getGeneros() {
+	public List<Genero> getGeneros() {
 		return GeneroDAO.retornarLista();
 	}
 
-	public void setGeneros(ArrayList<Genero> generos) {
+	public void setGeneros(List<Genero> generos) {
 		this.generos = generos;
 	}
 
