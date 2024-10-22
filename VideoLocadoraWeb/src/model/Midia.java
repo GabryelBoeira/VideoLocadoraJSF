@@ -48,7 +48,7 @@ public class Midia implements Serializable {
 	@Column(name = "midia_alugada")
 	private boolean midiaAlugada = false;
 	
-	@ManyToOne(fetch = FetchType.LAZY)
+	@ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "genero_id")
 	private Genero genero;
 	
@@ -122,6 +122,15 @@ public class Midia implements Serializable {
 
 	public void setMidiaAlugada(boolean midiaAlugada) {
 		this.midiaAlugada = midiaAlugada;
+	}
+
+	@Override
+	public String toString() {
+		return "Midia [id=" + id + ", titulo=" + titulo + ", tipoMidia="
+				+ tipoMidia + ", diretor=" + diretor + ", duracao=" + duracao
+				+ ", classificacaoIdade=" + classificacaoIdade + ", preco="
+				+ preco + ", midiaAlugada=" + midiaAlugada + ", genero="
+				+ genero + "]";
 	}
 
 }

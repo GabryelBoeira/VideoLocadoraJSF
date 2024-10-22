@@ -45,4 +45,11 @@ public class Genero implements Serializable{
 		this.descricao = descricao;
 	}
 
+	@Override
+	public String toString() {
+		return "Genero [id=" + id + ", nome=" + nome + ", descricao="
+				+ descricao + "]";
+	}
+
+	
 }

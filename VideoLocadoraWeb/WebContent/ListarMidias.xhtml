@@ -11,56 +11,43 @@
 	<meta charset="UTF-8" />
 </h:head>
 <h:body>
-		<ui:composition template="Template.xhtml">
-			<ui:define name="conteudoCentral">
-			
-				<h:form >
-				 <p:growl id="growl" life="2000" />
-					<p:dataTable var="midia" value="#{mMidiaBean.midias}">
-						<p:column>
-							<f:facet name="header">
-							Id
-						</f:facet>
-							<h:outputText value="#{midia.id}">
-							</h:outputText>
-						</p:column>
+	<ui:composition template="Template.xhtml">
+		<ui:define name="conteudoCentral">		
+			<h:form >
+			 	<p:growl id="growl" life="2000" />
+				<p:dataTable var="midia" value="#{mMidiaBean.midias}">
+					<p:column>
+						<f:facet name="header">Id</f:facet>
+						<h:outputText value="#{midia.id}"/>
+					</p:column>
 
-						<p:column>
-							<f:facet name="header">
-							Titulo
-						</f:facet>
-							<h:outputText value="#{midia.titulo}">
-							</h:outputText>
-						</p:column>
+					<p:column>
+						<f:facet name="header">Titulo</f:facet>
+						<h:outputText value="#{midia.titulo}"/>
+					</p:column>
 
-						<p:column>
-							<f:facet name="header">
-							Tipo
-						</f:facet>
-							<h:outputText value="#{midia.tipoMidia}">
-							</h:outputText>
-						</p:column>
+					<p:column>
+						<f:facet name="header">Tipo</f:facet>
+						<h:outputText value="#{midia.tipoMidia}"/>							
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">Genero</f:facet>
+						<h:outputText value="#{midia.genero.nome}"/>							
+					</p:column>
 
-						<p:column>
-							<f:facet name="header">
-							status da midia
-						</f:facet>
-							<h:outputText value="#{midia.midiaAlugada}">
-							</h:outputText>
-						</p:column>
-						
-						<p:column>
-							<f:facet name="header">
-								Remover
-							</f:facet>
-							<p:commandButton value="Remover"
-								action="#{mMidiaBean.removerMidia(midias)}" >
-							</p:commandButton>
-						</p:column>
-					</p:dataTable>
-				</h:form>
-				
-			</ui:define>
-		</ui:composition>
+					<p:column>
+						<f:facet name="header">Midia disponivel</f:facet>
+						<h:outputText value="#{midia.midiaAlugada}"/>
+					</p:column>
+					
+					<p:column>
+						<f:facet name="header">Remover</f:facet>
+						<p:commandButton value="Remover" action="#{mMidiaBean.removerMidia(midias)}" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </h:body>
 </html>

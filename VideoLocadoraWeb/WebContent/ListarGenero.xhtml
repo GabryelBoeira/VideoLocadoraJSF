@@ -17,37 +17,21 @@
 		<ui:define name="conteudoCentral">
 			
 				<h:form >
-				<p:dataTable var="generos" value="#{mGeneroBean.generos}">
-				<p:column>
-						<f:facet name="header">
-							Id
-						</f:facet>
-						<h:outputText value="#{generos.id}">
-						</h:outputText>
-					</p:column>
-
+				<p:dataTable var="genero" value="#{mGeneroBean.generos}">				
 					<p:column>
-						<f:facet name="header">
-							Titulo
-						</f:facet>
-						<h:outputText value="#{generos.nome}">
-						</h:outputText>
+						<f:facet name="header">Titulo </f:facet>
+						<h:outputText value="#{genero.nome}"/>
 					</p:column>
 					
 					<p:column>
-						<f:facet name="header">
-						 Descrição
-						</f:facet>
-						<h:outputText value="#{generos.descricao}">
-						</h:outputText>
+						<f:facet name="header">Descrição</f:facet>
+						<h:outputText value="#{genero.descricao}"/>
 					</p:column>
 					
 					<p:column>
-						<f:facet name="header">
-							Remover
-						</f:facet>
+						<f:facet name="header">Remover</f:facet>
 						<p:commandButton value="Remover"
-							action="#{mGeneroBean.removerGenero(generos)}">
+							action="#{mGeneroBean.removerGenero(genero.id)}">
 						</p:commandButton>
 					</p:column>
 
@@ -56,7 +40,7 @@
 							Alterar
 						</f:facet>
 						<p:commandButton value="Alterar"
-							action="#{mGeneroBean.mandarDadosParaAlterar(generos)}">
+							action="#{mGeneroBean.mandarDadosParaAlterar(genero)}">
 						</p:commandButton>
 					</p:column>
 				</p:dataTable>

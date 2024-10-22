@@ -21,7 +21,7 @@ public class Verificar {
 		}
 	}
 
-	public static int getIdade(java.util.Date data) {
+	public static int getIdade(Date data) {
 		Calendar cn = Calendar.getInstance();
 		cn.setTime(data);
 
@@ -72,14 +72,14 @@ public class Verificar {
 		return resultado;
 	}
 
-	public String converteData(java.util.Date dtData) {
+	public String converteData(Date dtData) {
 		SimpleDateFormat formatBra;
 		formatBra = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			java.util.Date newData = formatBra.parse(dtData.toString());
 			return (formatBra.format(newData));
 		} catch (ParseException Ex) {
-			return "Erro na convers�o da data";
+			return "Erro na conversao da data";
 		}
 	}
 

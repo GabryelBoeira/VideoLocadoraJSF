@@ -21,11 +21,11 @@ public class MGeneroBean {
 	private List<Genero> generos = new ArrayList<Genero>();
 
 	// remover genero
-	public String removerGenero(Genero genero) {
-		List<Midia> midias = MidiaDAO.retornarMidia();
+	public String removerGenero(int generoId) {
+		List<Midia> midias = MidiaDAO.retornarMidiaPorGenero(generoId);
 		for (Midia midia : midias) {
 			if (midia.getGenero().equals(genero)) {
-				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Genero n�o Apagado por estar vinculado a uma midia."));
+				FacesContext.getCurrentInstance().addMessage(null,new FacesMessage(FacesMessage.SEVERITY_ERROR, "Erro", "Genero nao Apagado por estar vinculado a uma midia."));
 				return "ListarGenero.xhtml";
 			}
 		}

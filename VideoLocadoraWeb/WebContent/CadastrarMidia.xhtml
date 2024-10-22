@@ -30,7 +30,6 @@
 					<p:inputText placeholder="DVD, CD, BLUE-RAY"
 						value="#{mMidiaBean.midia.tipoMidia}"></p:inputText>
 
-
 					<p:outputLabel value="Duração:" />
 					<p:calendar value="#{mMidiaBean.midia.duracao}"
 						placeholder="Tempo de duração" pattern="HH:mm" timeOnly="true" />
@@ -42,7 +41,7 @@
 					</p:inputNumber>
 
 					<p:outputLabel for="console" value="Classificação Inticativa:" />
-					<p:inputNumber value="#{mMidiaBean.midia.classificacaoIdade}" />
+					<p:inputNumber decimalPlaces="0" value="#{mMidiaBean.midia.classificacaoIdade}" />
 						
 						<p:outputLabel for="console" value="Genero:" />
 						<p:selectOneMenu id="console" value="#{mMidiaBean.idGenero}"

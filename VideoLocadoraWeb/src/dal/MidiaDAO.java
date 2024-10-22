@@ -118,6 +118,13 @@ public class MidiaDAO {
 		Query q = em.createQuery("SELECT c FROM Midia c");
 		List<Midia> lista = (List<Midia>) q.getResultList();
 		em.close();
+		
+		
+		for (Midia m : lista) {
+			//System.out.print("aqui genero -> " + m.getGenero().toString());			
+
+			System.out.print("aqui midia -> " + m.toString());			
+		}
 		return lista;
 	}
 
@@ -125,5 +132,16 @@ public class MidiaDAO {
 
 		EntityManager em = Conexao.getEntityManager();
 		return em.find(Midia.class, id);
+	}
+	
+	public static List<Midia> retornarMidiaPorGenero(int generoId) {
+		// REMOVER A LINHA DO BEGIN() EM QUALQUER BUSCA NO BANCO
+		EntityManager em = Conexao.getEntityManager();
+		Query q = em.createQuery("SELECT c FROM Midia c WHERE c.genero_id = :generoId");
+		q.setParameter("generoId", generoId);
+
+		List<Midia> lista = (List<Midia>) q.getResultList();
+		em.close();
+		return lista;
 	}
 }
